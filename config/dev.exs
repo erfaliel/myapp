@@ -1,14 +1,23 @@
 import Config
 
 # Configure your database
-config :hello, Hello.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "hello_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+# Use DATABASE_URL if available (for Docker), otherwise use localhost config
+if database_url = System.get_env("DATABASE_URL") do
+  config :hello, Hello.Repo,
+    url: database_url,
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: 10
+else
+  config :hello, Hello.Repo,
+    username: "postgres",
+    password: "postgres",
+    hostname: "localhost",
+    database: "hello_dev",
+    stacktrace: true,
+    show_sensitive_data_on_connection_error: true,
+    pool_size: 10
+end
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -19,11 +28,12 @@ config :hello, Hello.Repo,
 config :hello, HelloWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "F/GFO/Eg79BCIRhC/623Zsstr6uN2yJzIijD0Ns3uVEy7FMAz1Llg0y1ZUWi/ku9",
+  #secret_key_base: "F/GFO/Eg79BCIRhC/623Zsstr6uN2yJzIijD0Ns3uVEy7FMAz1Llg0y1ZUWi/ku9",
+  secret_key_base: System.get_env("SECRET_KEY_BASE") || "F/GFO/Eg79BCIRhC/623Zsstr6uN2yJzIijD0Ns3uVEy7FMAz1Llg0y1ZUWi/ku9",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:hello, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:hello, ~w(--watch)]}

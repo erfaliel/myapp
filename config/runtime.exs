@@ -20,6 +20,17 @@ if System.get_env("PHX_SERVER") do
   config :hello, HelloWeb.Endpoint, server: true
 end
 
+if config_env() == :dev do
+  config :hello, Hello.Repo,
+    url: System.get_env("DATABASE_URL") ||
+          raise """
+        environment variable DATABASE_URL is missing.
+        For example: ecto://USER:PASS@HOST/DATABASE
+        """
+
+    # ... autres options
+end
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
