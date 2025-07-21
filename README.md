@@ -13,14 +13,30 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 You can build and run this project using Docker and Docker Compose. This setup uses Elixir 1.14.5, Erlang 25.3.2.6, and Alpine 3.18 as the base image. The application exposes port **4000** by default.
 
-### Build and Run
+### Build and Run Dev
+```sh
+# Lancer l'environnement de développement
+docker-compose -f docker-compose.dev.yml up --build
+
+# Arrêter l'environnement
+docker-compose -f docker-compose.dev.yml down
+
+# Pour les logs
+docker-compose -f docker-compose.dev.yml logs -f web
+```
+### Build and Run Prod
+```sh
+# Lancer l'environnement de production
+docker-compose -f docker-compose.prod.yml up --build
+```
+The Phoenix server will be available at [http://localhost:4000](http://localhost:4000).
+
+### ~~Build and Run basic~~
 
 ```sh
 # Build and start the service
 docker compose up --build
 ```
-
-The Phoenix server will be available at [http://localhost:4000](http://localhost:4000).
 
 ### Environment Variables
 
