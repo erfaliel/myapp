@@ -38,7 +38,8 @@ RUN mix assets.deploy
 RUN mix release --no-deps-check --no-compile
 
 # ---- Release Stage ----
-FROM alpine:3.18 AS app
+# FROM alpine:3.18 AS app
+FROM alpine:3.21 AS app
 
 # Install runtime dependencies
 RUN apk add --no-cache libstdc++ openssl ncurses-libs

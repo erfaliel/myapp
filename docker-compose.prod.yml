@@ -10,7 +10,11 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   web:
-    build: .
+    # build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    # Use the production environment
     depends_on:
       - db
     environment:

@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: hello_dev
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Expose PostgreSQL port for debugging if needed
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    environment:
+      MIX_ENV: dev
+      DATABASE_URL: postgres://postgres:postgres@db:5432/hello_dev
+    env_file:
+      - .env
+    ports:
+      - "4000:4000"
+    volumes:
+      # Mount source code for hot reloading
+      - .:/app
+      # Use anonymous volumes to avoid syncing heavy build directories
+      - /app/_build
+      - /app/deps
+      - /app/node_modules
+    # Add stdin/tty for interactive debugging
+    stdin_open: true
+    tty: true
+
+volumes:
+  pgdata:

@@ -1,0 +1,34 @@
+# syntax=docker/dockerfile:1
+
+FROM hexpm/elixir:1.18.4-erlang-28.0.1-alpine-3.21.3
+
+# Install development dependencies including inotify-tools for file watching
+RUN apk add --no-cache build-base git npm inotify-tools
+
+# Set environment variables for development
+ENV MIX_ENV=dev \
+    LANG=C.UTF-8
+
+# Create app directory
+WORKDIR /app
+
+# Install Hex + Rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
+
+# Copy mix files first for dependency caching
+COPY mix.exs mix.lock ./
+COPY config ./config
+
+# Install ALL dependencies (dev + prod + test)
+RUN mix deps.get
+RUN mix deps.compile
+
+# Expose the port
+EXPOSE 4000
+
+# Set development environment variables
+ENV PHX_SERVER=true
+
+# Command for development with hot reloading
+CMD ["mix", "phx.server"]
