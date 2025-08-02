@@ -19,11 +19,16 @@ defmodule HelloWeb.Endpoint do
   #
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
+  plug Plug.RequestId
+  plug Plug.Logger,
+    log: :debug,
+    metadata: [:requestId, :user_id, :session_id]
   plug Plug.Static,
     at: "/",
     from: :hello,
     gzip: false,
     only: HelloWeb.static_paths()
+  
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -38,7 +43,6 @@ defmodule HelloWeb.Endpoint do
     param_key: "request_logger",
     cookie_key: "request_logger"
 
-  plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   plug Plug.Parsers,
