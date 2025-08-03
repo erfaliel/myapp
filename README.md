@@ -1,13 +1,8 @@
 # Hello
 
-To start your Phoenix server:
-
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+The goal is to start a fresh Phoenix project using docker-compose for local development.
+You can use the development environment with the HotReload feature and Debug Log level. I have also added a custom plug for request debug logs.
+The production environment is available as well.
 
 ## Running with Docker
 
