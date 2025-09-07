@@ -170,7 +170,7 @@ Ce dépôt permet de démarrer n’importe quel projet Phoenix (Elixir) en mode 
 
 1. **Clone le template :**
 
-git clone https://github.com/mon-org/phoenix-docker-template.git mon-super-app
+git clone https://github.com/erfaliel/hello.git mon-super-app
 cd mon-super-app
 
 text
