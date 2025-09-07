@@ -11,7 +11,7 @@ This repository allows you to start any Phoenix (Elixir) project in a containeri
 Clone the template:
 
 bash
-git clone https://github.com/mon-org/phoenix-docker-template.git my-awesome-app
+git clone https://github.com/erfaliel/hello.git my-awesome-app
 cd my-awesome-app
 Rename the project (one time, irreversible):
 
