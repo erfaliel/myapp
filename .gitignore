@@ -35,6 +35,12 @@ hello-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Script checksum cache
+.deps_checksum
+
+# Docker build marker (maybe tou use make one day)
+.docker-build-marker
+
 # Apple
 .DS_STORE
 

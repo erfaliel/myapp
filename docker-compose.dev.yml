@@ -5,9 +5,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: hello_dev
-      PGDATA: /var/lib/postgresql/data/pgdata
+      PGDATA_DEV: /var/lib/postgresql/data/pgdata
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata_dev:/var/lib/postgresql/data
     ports:
       - "5432:5432"  # Expose PostgreSQL port for debugging if needed
 
@@ -21,19 +21,22 @@ services:
       MIX_ENV: dev
       DATABASE_URL: postgres://postgres:postgres@db:5432/hello_dev
     env_file:
-      - .env
+      - .env.dev
     ports:
       - "4000:4000"
+    entrypoint: ["./entrypoint-dev.sh"] #script for check update
     volumes:
       # Mount source code for hot reloading
-      - .:/app
-      # Use anonymous volumes to avoid syncing heavy build directories
-      - /app/_build
-      - /app/deps
-      - /app/node_modules
+      - .:/app:cached
+      - phoenix_deps:/app/deps    # named volume for dependencies
+      - phoenix_build:/app/_build # named voulme for compilation
+      - phoenix_node_modules:/app/node_modules
     # Add stdin/tty for interactive debugging
     stdin_open: true
     tty: true
 
 volumes:
-  pgdata:
+  pgdata_dev:
+  phoenix_build:
+  phoenix_node_modules:
+  phoenix_deps:

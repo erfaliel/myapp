@@ -1,0 +1,54 @@
+# Hello
+
+The goal is to start a fresh Phoenix project using docker-compose for local development.
+You can use the development environment with the HotReload feature and Debug Log level. I have also added a custom plug for request debug logs.
+The production environment is available as well.
+
+## Running with Docker
+
+You can build and run this project using Docker and Docker Compose. This setup uses Elixir 1.14.5, Erlang 25.3.2.6, and Alpine 3.18 as the base image. The application exposes port **4000** by default.
+
+### Build and Run Dev
+```sh
+# Lancer l'environnement de développement
+docker-compose -f docker-compose.dev.yml up --build
+
+# Arrêter l'environnement
+docker-compose -f docker-compose.dev.yml down
+
+# Pour les logs
+docker-compose -f docker-compose.dev.yml logs -f web
+```
+### Build and Run Prod
+```sh
+# Lancer l'environnement de production
+docker-compose -f docker-compose.prod.yml up --build
+```
+The Phoenix server will be available at [http://localhost:4000](http://localhost:4000).
+
+### ~~Build and Run basic~~
+
+```sh
+# Build and start the service
+docker compose up --build
+```
+
+### Environment Variables
+
+- `MIX_ENV` is set to `prod` by default in the container.
+- `PHX_SERVER` is set to `true` to ensure the server starts automatically.
+- You can override these or add additional environment variables as needed.
+
+### Notes
+
+- No external services (such as databases) are configured by default. If you add a database, update `docker-compose.yml` accordingly.
+- The default exposed port is **4000**.
+- The container runs as a non-root user for improved security.
+
+## Learn more
+
+  * Official website: https://www.phoenixframework.org/
+  * Guides: https://hexdocs.pm/phoenix/overview.html
+  * Docs: https://hexdocs.pm/phoenix
+  * Forum: https://elixirforum.com/c/phoenix-forum
+  * Source: https://github.com/phoenixframework/phoenix
