@@ -3,8 +3,10 @@
 
 set -e
 
-OLD_NAME="hello" # Nom de base de ton template (important)
+OLD_NAME="my_app" # Nom de base de ton template (important)
 NEW_NAME="$1"
+NEW_NAME_CAP=$(echo "$NEW_NAME" | awk '{print toupper(substr($0,1,1))tolower(substr($0,2))}')
+OLD_NAME_CAP=$(echo "$OLD_NAME" | awk '{print toupper(substr($0,1,1))tolower(substr($0,2))}')
 
 if [ -z "$NEW_NAME" ]; then
   echo "❌ Usage: $0 NouveauNomProjet"
@@ -14,17 +16,17 @@ fi
 echo "🔄 Renommage du projet $OLD_NAME → $NEW_NAME..."
 
 ## 1. Renommage mix.exs (nom module + app)
-sed -i "s/app: :$OLD_NAME/app: :$NEW_NAME/" mix.exs
-sed -i "s/$OLD_NAME/$NEW_NAME/g" mix.exs
-sed -i "s/${OLD_NAME^}/${NEW_NAME^}/g" mix.exs # Capitalized pour module
+sed -i '' "s/app: :$OLD_NAME/app: :$NEW_NAME/" mix.exs
+sed -i '' "s/$OLD_NAME/$NEW_NAME/g" mix.exs
+sed -i '' "s/${OLD_NAME_CAP}/${NEW_NAME_CAP}/g" mix.exs # Capitalized pour module
 
 ## 2. Renommage fichiers config, scripts, README, docker-compose
 for f in $(grep -rl "$OLD_NAME" config/ Dockerfile* docker-compose* scripts/ README* .env*); do
-  sed -i "s/$OLD_NAME/$NEW_NAME/g" "$f"
+  sed -i '' "s/$OLD_NAME/$NEW_NAME/g" "$f"
 done
 
-for f in $(grep -rl "${OLD_NAME^}" config/ Dockerfile* docker-compose* scripts/ README* .env*); do
-  sed -i "s/${OLD_NAME^}/${NEW_NAME^}/g" "$f"
+for f in $(grep -rl "${OLD_NAME_CAP}" config/ Dockerfile* docker-compose* scripts/ README* .env*); do
+  sed -i '' "s/${OLD_NAME_CAP}/${NEW_NAME_CAP}/g" "$f"
 done
 
 ## 3. Renommage des dossiers Elixir
@@ -34,7 +36,7 @@ done
 ## 4. Option : Migration du module principal dans lib/
 if [ -f "lib/${OLD_NAME}.ex" ]; then
   mv "lib/${OLD_NAME}.ex" "lib/${NEW_NAME}.ex"
-  sed -i "s/${OLD_NAME^}/${NEW_NAME^}/g" "lib/${NEW_NAME}.ex"
+  sed -i '' "s/${OLD_NAME_CAP}/${NEW_NAME_CAP}/g" "lib/${NEW_NAME}.ex"
 fi
 
 ## 5. Optionnel : renommer le dossier principal si besoin (manuellement/déploiement, pas toujours souhaitable)
