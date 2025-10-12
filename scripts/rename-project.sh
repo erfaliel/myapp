@@ -3,12 +3,12 @@
 set -e
 
 # CONFIGURATION: Current template names (UPDATE THESE FOR YOUR TEMPLATE)
-OLD_APP_ATOM="hello"           # Atom in mix.exs :hello
-OLD_APP_LOWER="hello"          # Lowercase app name
-OLD_APP_UPPER="Hello"          # Capitalized module name
-OLD_APP_WEB="hello_web"        # Web module lowercase
-OLD_APP_WEB_UPPER="HelloWeb"   # Web module capitalized
-OLD_DB_NAME="hello_dev"        # Database name
+OLD_APP_ATOM="test"           # Atom in mix.exs :hello
+OLD_APP_LOWER="test"          # Lowercase app name
+OLD_APP_UPPER="Test"          # Capitalized module name
+OLD_APP_WEB="test_web"        # Web module lowercase
+OLD_APP_WEB_UPPER="TestWeb"   # Web module capitalized
+OLD_DB_NAME="test_dev"        # Database name
 
 NEW_NAME="$1"
 
