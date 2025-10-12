@@ -1,4 +1,4 @@
-defmodule HelloWeb.Plugs.ConnLogger do
+defmodule TestWeb.Plugs.ConnLogger do
   import Plug.Conn
   require Logger
 

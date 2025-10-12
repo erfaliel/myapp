@@ -1,5 +1,5 @@
-defmodule HelloWeb.PageController do
-  use HelloWeb, :controller
+defmodule TestWeb.PageController do
+  use TestWeb, :controller
 
   def home(conn, _params) do
     # The home page is often custom made,
