@@ -49,7 +49,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 WORKDIR /app
 
 # Copy release from build stage
-COPY --from=build /app/_build/prod/rel/hello .
+COPY --from=build /app/_build/prod/rel/test .
 
 # Copy production entrypoint
 COPY --link entrypoint-prod.sh ./entrypoint-prod.sh

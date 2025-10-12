@@ -3,17 +3,17 @@ import Config
 # Configure your database
 # Use DATABASE_URL if available (for Docker), otherwise use localhost config
 if database_url = System.get_env("DATABASE_URL") do
-  config :hello, Hello.Repo,
+  config :test, Test.Repo,
     url: database_url,
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: 10
 else
-  config :hello, Hello.Repo,
+  config :test, Test.Repo,
     username: "postgres",
     password: "postgres",
     hostname: "localhost",
-    database: "hello_dev",
+    database: "test_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: 10
@@ -25,7 +25,7 @@ end
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :hello, HelloWeb.Endpoint,
+config :test, TestWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {0, 0, 0, 0}, port: 4000],
@@ -35,8 +35,8 @@ config :hello, HelloWeb.Endpoint,
   #secret_key_base: "F/GFO/Eg79BCIRhC/623Zsstr6uN2yJzIijD0Ns3uVEy7FMAz1Llg0y1ZUWi/ku9",
   secret_key_base: System.get_env("SECRET_KEY_BASE") || "F/GFO/Eg79BCIRhC/623Zsstr6uN2yJzIijD0Ns3uVEy7FMAz1Llg0y1ZUWi/ku9",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:hello, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:hello, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:test, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:test, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -63,17 +63,17 @@ config :hello, HelloWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :hello, HelloWeb.Endpoint,
+config :test, TestWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/hello_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/test_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :hello, dev_routes: true
+config :test, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, 

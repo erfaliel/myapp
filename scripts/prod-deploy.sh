@@ -13,7 +13,7 @@ if [ ! -f ".env.prod" ]; then
 # Environnement de production
 SECRET_KEY_BASE=$SECRET_KEY
 MIX_ENV=prod
-DATABASE_URL=ecto://postgres:postgres@db/hello_prod
+DATABASE_URL=ecto://postgres:postgres@db/test_prod
 PHX_HOST=localhost
 PORT=4000
 DEBUG=false

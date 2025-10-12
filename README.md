@@ -11,13 +11,13 @@ This repository allows you to start any Phoenix (Elixir) project in a containeri
 Clone the template:
 
 bash
-git clone https://github.com/erfaliel/hello.git my-awesome-app
+git clone https://github.com/erfaliel/test.git my-awesome-app
 cd my-awesome-app
 Rename the project (one time, irreversible):
 
 bash
 ./scripts/rename-project.sh my_awesome_app
-This will adapt all internal names (hello → my_awesome_app) for the app, config, modules, and scripts.
+This will adapt all internal names (test → my_awesome_app) for the app, config, modules, and scripts.
 
 (Optional) Change the Phoenix or Elixir version
 
@@ -170,7 +170,7 @@ Ce dépôt permet de démarrer n’importe quel projet Phoenix (Elixir) en mode 
 
 1. **Clone le template :**
 
-git clone https://github.com/erfaliel/hello.git mon-super-app
+git clone https://github.com/erfaliel/test.git mon-super-app
 cd mon-super-app
 
 text
@@ -181,7 +181,7 @@ text
 
 text
 
-Cela va adapter tous les noms internes (`hello` → `mon_super_app`) pour l’application, la config, les modules et scripts.
+Cela va adapter tous les noms internes (`test` → `mon_super_app`) pour l’application, la config, les modules et scripts.
 
 3. **(Optionnel) Modifie la version Phoenix ou Elixir**
 - Change la version dans `mix.exs`

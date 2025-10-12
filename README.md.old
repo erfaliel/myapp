@@ -1,4 +1,4 @@
-# Hello
+# Test
 
 The goal is to start a fresh Phoenix project using docker-compose for local development.
 You can use the development environment with the HotReload feature and Debug Log level. I have also added a custom plug for request debug logs.

@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_DB: hello_dev
+      POSTGRES_DB: test_dev
       PGDATA_DEV: /var/lib/postgresql/data/pgdata
     volumes:
       - pgdata_dev:/var/lib/postgresql/data
@@ -19,7 +19,7 @@ services:
       - db
     environment:
       MIX_ENV: dev
-      DATABASE_URL: postgres://postgres:postgres@db:5432/hello_dev
+      DATABASE_URL: postgres://postgres:postgres@db:5432/test_dev
     env_file:
       - .env.dev
     ports:

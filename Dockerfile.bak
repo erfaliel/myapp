@@ -49,7 +49,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 WORKDIR /app
 
 # Copy release from build stage
-COPY --from=build /app/_build/prod/rel/hello .
+COPY --from=build /app/_build/prod/rel/test .
 
 # Set permissions
 RUN chown -R appuser:appgroup /app
@@ -64,4 +64,4 @@ ENV MIX_ENV=prod \
     PHX_SERVER=true
 
 # Entrypoint
-CMD ["bin/hello", "start"]
+CMD ["bin/test", "start"]
