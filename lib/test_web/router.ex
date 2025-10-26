@@ -23,8 +23,6 @@ defmodule TestWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/test", TestController, :index
-    get "/test/:messenger", TestController, :show #/test/vincent for example
   end
 
   # Other scopes may use custom stacks.
